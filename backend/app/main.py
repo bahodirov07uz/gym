@@ -22,30 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# -------------------------
-# SQLAdmin
-# -------------------------
-class UserAdmin(ModelView, model=models.User):
-    column_list = [models.User.id, models.User.username, models.User.email]
-
-class ProductAdmin(ModelView, model=models.Product):
-    column_list = [models.Product.id, models.Product.title, models.Product.price]
-
-class CategoryAdmin(ModelView, model=models.Category):
-    column_list = [models.Category.id, models.Category.name]
-
-class OrderAdmin(ModelView, model=models.Order):
-    column_list = [models.Order.id, models.Order.total_amount, models.Order.status]
-
-admin = Admin(app, engine)
-admin.add_view(UserAdmin)
-admin.add_view(ProductAdmin)
-admin.add_view(CategoryAdmin)
-admin.add_view(OrderAdmin)
-
-# -------------------------
 # Routers
-# -------------------------
 app.include_router(products.router)
 app.include_router(categories.router)
 app.include_router(orders.router)
